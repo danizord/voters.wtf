@@ -6,6 +6,7 @@ specifiers:
   '@chakra-ui/theme-tools': ^2.0.12
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@tsconfig/strictest': ^1.0.2
   '@types/node': ^18.11.4
   '@types/react': ^18.0.22
   '@types/react-dom': ^18.0.7
@@ -29,6 +30,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
+  '@tsconfig/strictest': 1.0.2
   '@types/node': 18.11.4
   '@types/react': 18.0.22
   '@types/react-dom': 18.0.7
@@ -1537,6 +1539,10 @@ packages:
     dependencies:
       tslib: 2.4.0
     dev: false
+
+  /@tsconfig/strictest/1.0.2:
+    resolution: {integrity: sha512-IRKlC8cnP7zMz1SDBjyIVyPapkEGWLZ6wkF6Z8T+xU80P9sO5uGXlIUvtzjx+7ehPJRWxkB6CeIDwUfyqNtYkQ==}
+    dev: true
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
