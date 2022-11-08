@@ -1,3 +1,4 @@
 export * from "./client";
-export * from "./getHouses";
-export * from "./getVoters";
+export * from "./house";
+export * from "./voters";
+export * from "./votingPower";
