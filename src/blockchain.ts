@@ -1,8 +1,7 @@
-import { chain, configureChains, createClient } from "wagmi";
-import { infuraProvider as _infuraProvider } from "wagmi/providers/infura";
-
 import { getDefaultClient } from "connectkit";
 import { providers } from "ethers";
+import { Chain, chain, configureChains, createClient } from "wagmi";
+import { infuraProvider as _infuraProvider } from "wagmi/providers/infura";
 
 export const batchProvider = new providers.JsonRpcBatchProvider(
   "https://mainnet.infura.io/v3/45d2ea2d3dee419abb1ac770b5130844",
@@ -15,9 +14,9 @@ export const batchProvider = new providers.JsonRpcBatchProvider(
 
 const infuraProvider = _infuraProvider({ apiKey: "45d2ea2d3dee419abb1ac770b5130844" });
 
-const customProvider = (chain: any) => {
+const customProvider = (chain: Chain) => {
   return {
-    ...infuraProvider(chain),
+    ...infuraProvider(chain)!,
     provider: () => batchProvider,
   };
 };
