@@ -16,9 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { batchProvider } from "src/blockchain";
-import { useHouse, useVoter, useVoterQuery } from "src/propHouse";
+import { useDelegators, useHouse, useVoter, useVoterQuery } from "src/propHouse";
 import { useQuery } from "wagmi";
-import { useDelegators } from "./Voter/useDelegators";
 
 export const Delegators = () => {
   const house = useHouse();

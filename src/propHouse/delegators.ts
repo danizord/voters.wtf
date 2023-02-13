@@ -1,8 +1,9 @@
 import { group, sort } from "radash";
 import { batchProvider, NounishVotingPowerTokenAbi } from "src/blockchain";
-import { useHouse, useVoter } from "src/propHouse";
 import { Address, useContractReads, useQuery } from "wagmi";
 import { getContract } from "wagmi/actions";
+import { useHouse } from "./house";
+import { useVoter } from "./voters";
 
 export const getDelegators = async ({ house, account }: { house: { contractAddress: string }; account: Address }) => {
   const contract = getContract({
