@@ -3,7 +3,7 @@ import assert from "assert";
 import { isAddress } from "ethers/lib/utils";
 import { useRouter } from "next/router";
 import { queryClient } from "src/queryClient";
-import { HouseData } from "./house";
+import type { HouseData } from "./house";
 
 export function getVoterAddresses(house: HouseData) {
   return Array.from(
