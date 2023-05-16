@@ -5,7 +5,16 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
   "customizations": {
     "vscode": {
-      "extensions": ["ms-playwright.playwright", "esbenp.prettier-vscode", "bradlc.vscode-tailwindcss"]
+      "extensions": [
+        "ms-playwright.playwright",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "GitHub.copilot-labs",
+        "GitHub.copilot-nightly",
+        "ms-toolsai.datawrangler",
+        "GitHub.vscode-pull-request-github",
+        "mutantdino.resourcemonitor"
+      ]
     }
   },
 
