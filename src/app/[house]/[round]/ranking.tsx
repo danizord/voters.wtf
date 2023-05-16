@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useSpring, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { ReactElement } from 'react';
 import { useSelectedVote } from './timeline';
 
@@ -30,7 +30,7 @@ export const Ranking = ({ proposals, votes }: RankingProps) => {
             <div className="flex-shrink-0 mr-2">
               {/* <img className="w-10 h-10 rounded-full" src={proposal.author.avatarUrl} alt="" /> */}
               <div className="w-10 h-10   text-xl text-center" >
-                <Position i={i + 1}></Position>
+                {i + 1}
               </div>
             </div>
 
@@ -44,13 +44,6 @@ export const Ranking = ({ proposals, votes }: RankingProps) => {
   )
 }
 
-const Position = ({ i }: { i: number }) => {
-  const springConfig = { damping: 20, stiffness: 300 };
-  const spring = useSpring(i, springConfig);
-  const progress = useTransform(spring, [0, 100], [0, 100], { clamp: true });
-
-  return <motion.div>{progress}</motion.div>
-}
 
 const computeRanking = (proposalIds: number[], votes: { proposalId: number, weight: number }[]): number[] => {
   const voteCounts = Object.fromEntries(proposalIds.map((proposalId) => [proposalId, 0]));

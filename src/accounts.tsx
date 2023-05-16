@@ -26,3 +26,19 @@ export async function getAvatar(_address: string): Promise<string | null> {
 
   return ensAvatar;
 }
+
+export async function AccountName({ address }: { address: string }) {
+  return await getName(address);
+}
+
+export async function Avatar({ address }: { address: string }) {
+  const name = await getName(address);
+  const avatar = await getAvatar(address);
+
+  return avatar ? (
+    // ? <Image unoptimized src={avatar} alt={name} height={64} width={64} />
+    <img src={avatar} alt={name} height="64px" width="64px" />
+  ) : (
+    <div className=" h-full w-full bg-green-500" />
+  );
+}

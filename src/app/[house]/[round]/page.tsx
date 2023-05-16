@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getAvatar, getName } from "src/accounts";
+import { AccountName, Avatar } from "src/accounts";
 import { getProposals, getRoundBySlug, getVotes } from "src/propHouse";
 import { Tooltip, TooltipContent, TooltipTrigger } from "src/ui/tooltip";
 import { Ranking } from "./ranking";
@@ -39,32 +39,23 @@ async function Votes({ roundId }: { roundId: string }) {
     {votes.map((vote) => (
       <TimelineItem key={vote.id} voteId={vote.id}>
         <div className="flex-shrink-0 flex-grow-0 w-16 h-16 rounded-full hover:border-2 hover:border-red-500 overflow-clip">
-          <Suspense fallback={<div className="bg-gray-500 w-full h-full"></div>}>
-            <Avatar address={vote.voter.address} />
-          </Suspense>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Suspense fallback={<div className="bg-gray-500 w-full h-full"></div>}>
+                <Avatar address={vote.voter.address} />
+              </Suspense>
+            </TooltipTrigger>
+            <TooltipContent>
+              <Suspense>
+                <AccountName address={vote.voter.address} />
+              </Suspense>
+            </TooltipContent>
+          </Tooltip>
+
         </div>
       </TimelineItem>
     ))}
   </div>
-}
-
-async function Avatar({ address }: { address: string }) {
-  const name = await getName(address);
-  const avatar = await getAvatar(address);
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        {avatar
-          // ? <Image unoptimized src={avatar} alt={name} height={64} width={64} />
-          ? <img src={avatar} alt={name} height="64px" width="64px" />
-          : <div className=" w-full h-full bg-green-500" />}
-      </TooltipTrigger>
-      <TooltipContent>
-        {name}
-      </TooltipContent>
-    </Tooltip>
-  )
 }
 
 async function Proposals({ roundId }: { roundId: string }) {
@@ -74,7 +65,11 @@ async function Proposals({ roundId }: { roundId: string }) {
     <div key={proposal.id} className="text-sm">
       <p className="font-bold">{proposal.title}</p>
       {/* Todo: author */}
-      <p className="text-gray-500">{proposal.id}</p>
+      <p className="text-gray-500">
+        <Suspense>
+          <AccountName address={proposal.author.address} />
+        </Suspense>
+      </p>
     </div>
   )]));
 

@@ -141,6 +141,7 @@ export async function getProposals(roundId: string) {
       return {
         id: data.id.toString(),
         title: data.title,
+        author: { address: data.address },
       };
     });
 }
