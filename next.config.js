@@ -2,17 +2,9 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/nouns",
-        permanent: false,
-      },
-    ];
+  experimental: {
+    appDir: true,
+    // typedRoutes: true,
   },
 };
 
