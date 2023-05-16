@@ -2,8 +2,9 @@
 // It is a way to navigate the round voting history
 "use client";
 
+import { Slot } from '@radix-ui/react-slot';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
-import type { ReactElement } from "react";
+import { ReactElement } from "react";
 
 const selectedVote = atom<number | null>(null);
 
@@ -23,5 +24,5 @@ export const TimelineItem = ({
 }) => {
   const setSelectedVote = useSetAtom(selectedVote);
 
-  return <button onClick={() => setSelectedVote(voteId)}>{children}</button>;
+  return <Slot onClick={() => setSelectedVote(voteId)}>{children}</Slot>;
 };

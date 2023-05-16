@@ -1,6 +1,8 @@
 import { getRounds } from "src/propHouse";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "src/ui/card";
 
+export const runtime = 'edge';
+
 export default async function HomePage() {
   const rounds = await getRounds();
 
