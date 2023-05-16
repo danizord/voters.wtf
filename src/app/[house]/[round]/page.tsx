@@ -8,7 +8,7 @@ export default async function RoundPage({ params }: { params: { house: string, r
   const round = await getRoundBySlug(houseSlug, roundSlug);
 
   return (
-    <div className="space-y-4">
+    <div className="container pt-4 space-y-4">
       <div className="flex w-full flex-wrap items-start justify-between">
         <div>
           <h1 className="mb-2 text-2xl font-bold">#{round.id} {round.title}</h1>
