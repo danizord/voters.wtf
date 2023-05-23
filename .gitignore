@@ -40,4 +40,7 @@ next-env.d.ts
 /playwright-report/
 /playwright/.cache/
 
-.vscode
+# Project stuff
+/.vscode
+/docs/*
+/labs/*
