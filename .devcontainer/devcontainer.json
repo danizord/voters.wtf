@@ -25,7 +25,8 @@
       "configureZshAsDefaultShell": true,
       "installOhMyZsh": true
     },
-    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {},
+    "ghcr.io/devcontainers/features/python:1": {}
   },
 
   // Use 'postCreateCommand' to run commands after the container is created.
