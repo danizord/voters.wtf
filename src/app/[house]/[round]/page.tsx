@@ -5,7 +5,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "src/ui/tooltip";
 import { Ranking } from "./ranking";
 import { TimelineItem } from "./timeline";
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export default async function RoundPage({ params }: { params: { house: string, round: string } }) {
   const houseSlug = params.house;

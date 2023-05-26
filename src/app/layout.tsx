@@ -2,7 +2,7 @@ import "./globals.css";
 import { Header } from "./header";
 import { Providers } from "./providers";
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
