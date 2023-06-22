@@ -1,4 +1,4 @@
-import { getRounds } from "src/propHouse";
+import { getRounds } from "./service";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "src/ui/card";
 
 export const runtime = 'edge';
