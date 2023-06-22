@@ -1,13 +1,13 @@
 'use client'
-import { Provider } from 'jotai';
+import { Provider as JotaiProvider } from 'jotai';
 import { TooltipProvider } from 'src/ui/tooltip';
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+export const ClientProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Provider>
+    <JotaiProvider>
       <TooltipProvider>
         {children}
       </TooltipProvider>
-    </Provider>
+    </JotaiProvider>
   )
 }
