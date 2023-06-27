@@ -1,37 +1,66 @@
-import { getAddress } from "viem";
-import { publicClient } from "./blockchain";
+// import { getAddress } from "viem";
+// import { publicClient } from "./blockchain";
 
-export async function getName(_address: string): Promise<string> {
-  const address = getAddress(_address);
-  const ensName = await publicClient.getEnsName({
-    address: address,
-  });
+export class Address {
+  constructor(public address: string) { }
 
-  if (!ensName) {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  toString() {
+    return this.address;
   }
 
-  return ensName;
-}
-
-export async function getAvatar(_address: string): Promise<string | null> {
-  const address = getAddress(_address);
-  const name = await publicClient.getEnsName({ address });
-
-  if (!name) {
-    return null;
+  equals(other: Address) {
+    return this.address.toLowerCase() === other.address.toLowerCase();
   }
 
-  const ensAvatar = await publicClient.getEnsAvatar({ name });
-
-  return ensAvatar;
+  short() {
+    return `${this.address.slice(0, 6)}...${this.address.slice(-4)}`;
+  }
 }
 
-export async function AccountName({ address }: { address: string }) {
+export async function getName(_address: Address): Promise<string> {
+  const response = await fetch(`https://www.voters.wtf/api/voters/${_address.toString().toLowerCase()}`);
+
+  if (!response.ok) {
+    return _address.short();
+  }
+
+  const data = await response.json();
+
+  return data.ensName ?? _address.short();
+    // return _address.short();
+  // const address = getAddress(_address.toString());
+  // const ensName = await publicClient.getEnsName({
+  //   address: address,
+  // });
+
+  // if (!ensName) {
+  //   return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  // }
+
+  // return ensName;
+};
+
+
+
+export async function getAvatar(_address: Address): Promise<string | null> {
+  return null;
+  // const address = getAddress(_address);
+  // const name = await publicClient.getEnsName({ address });
+
+  // if (!name) {
+  //   return null;
+  // }
+
+  // const ensAvatar = await publicClient.getEnsAvatar({ name });
+
+  // return ensAvatar;
+}
+
+export async function AccountName({ address }: { address: Address }) {
   return await getName(address);
 }
 
-export async function Avatar({ address }: { address: string }) {
+export async function Avatar({ address }: { address: Address }) {
   const name = await getName(address);
   const avatar = await getAvatar(address);
 
