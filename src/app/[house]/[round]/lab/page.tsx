@@ -7,10 +7,10 @@ import {
   getVotes,
 } from "src/propHouse";
 import { Tooltip, TooltipContent, TooltipTrigger } from "src/ui/tooltip";
-import { Feed as FeedSection } from "./feed";
-import { Ranking } from "./ranking";
-import { TimelineItem } from "./timeline";
-import { VoteView } from "./vote";
+import { Feed as FeedSection } from "../feed";
+import { Ranking } from "../ranking";
+import { TimelineItem } from "../timeline";
+import { VoteView } from "../vote";
 import {
   TabGroup,
   TabList,
@@ -23,7 +23,7 @@ import {
   Bold,
   Badge,
 } from "@tremor/react";
-import { getRanking } from "./service";
+import { getRanking } from "../service";
 
 // export const runtime = "edge";
 
