@@ -51,18 +51,25 @@ export async function getProposals(roundId: string | number) {
 
   return proposals
     .filter((proposal) => proposal.visible && !proposal.deletedAt)
-    .map((p) => ({ ...p, author: { address: new Address(p.address) } }));
+    .map((p) => ({
+      ...p,
+      voteCount: p.voteCountFor,
+      author: { address: new Address(p.address) },
+    }));
 }
 
 export async function getVotes(roundId: string | number) {
   const proposals = await getProposals(roundId);
 
-  const votes = proposals.flatMap((proposal) =>
-    {
+  const votes = proposals.flatMap((proposal) => {
     const proposalVotes = proposal.votes.map((vote) => ({
       ...vote,
       voter: { address: new Address(vote.address) },
-      proposalId: proposal.id,
+      proposal: {
+        id: proposal.id,
+        title: proposal.title,
+        voteCount: proposal.voteCount,
+      },
     }));
 
     // Merge sequential votes from the same address
@@ -78,9 +85,8 @@ export async function getVotes(roundId: string | number) {
       return acc;
     }, [] as typeof proposalVotes);
 
-      return mergedVotes;
-    }
-  );
+    return mergedVotes;
+  });
 
   // Sort by ID
   return votes.sort((a, b) => a.id - b.id);
@@ -121,6 +127,7 @@ const Proposal = z.object({
   title: z.string(),
   deletedAt: z.string().nullable(),
   address: z.string(),
+  voteCountFor: z.number(),
   votes: z.array(
     z.object({
       id: z.number(),
